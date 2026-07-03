@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Telegram-бот за 2 дня. Без программиста - практический гайд за 1 590 ₽</title>
+<title>Telegram-бот за 2 дня. Без программиста - практический гайд от 590 ₽</title>
 <meta name="description" content="ChatGPT пишет техзадание. Cursor собирает бота. OpenRouter читает документы. Пошаговый гайд - автор прошёл этот маршрут сам, с нуля, без технического образования.">
 
 <!-- Google Fonts: preconnect + link (быстрее @import, display=swap для LCP) -->
@@ -768,6 +768,59 @@ nav {
 }
 .guarantee-text { font-size: 13px; line-height: 1.6; color: var(--text-m); }
 
+.price-tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+.tier-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.tier-featured {
+  background: linear-gradient(160deg, rgba(37,99,235,0.1) 0%, var(--surface) 55%);
+  border: 1px solid rgba(37,99,235,0.35);
+  transform: scale(1.02);
+}
+.tier-badge {
+  font-family: var(--mono);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent, #2563eb);
+}
+.tier-name { font-size: 20px; font-weight: 700; color: var(--text); }
+.tier-price {
+  font-family: var(--mono);
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 700; line-height: 1; letter-spacing: -1.5px;
+  color: var(--text);
+}
+.tier-list { display: flex; flex-direction: column; gap: 10px; margin: 4px 0; }
+.tier-list-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 14px; line-height: 1.5; color: var(--text-m);
+}
+.tier-list-item .mark { color: var(--success); flex-shrink: 0; }
+.tier-cta {
+  margin-top: auto;
+  text-align: center;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 15px; font-weight: 600;
+  background: var(--text); color: var(--bg);
+  transition: opacity 180ms ease;
+}
+.tier-cta:hover { opacity: 0.85; }
+.tier-featured .tier-cta { background: var(--accent, #2563eb); color: #fff; }
+@media (max-width: 860px) {
+  .price-tiers { grid-template-columns: 1fr; }
+  .tier-featured { transform: none; }
+}
+
 /* ════════════════════════════════════════════
    ЭКРАН 7 — FAQ (details/summary, без JS)
    ════════════════════════════════════════════ */
@@ -964,8 +1017,7 @@ footer {
     </div>
 
     <!-- CTA 1/3 -->
-    <!-- TODO: заменить на ссылку ЮKassa -->
-    <a class="cta-btn anim-cta" href="#pay">Получить гайд - 1 590 ₽</a>
+    <a class="cta-btn anim-cta" href="#price">Выбрать тариф - от 590 ₽</a>
     <p class="hero-trust anim-5">Оплата через ЮKassa · <span>7 дней</span> - верну если не подойдёт</p>
 
   </div>
@@ -1105,7 +1157,7 @@ footer {
     <div class="value-item">
       <div class="value-icon">💳</div>
       <div class="value-text">
-        <div class="value-title">1 590 ₽ один раз</div>
+        <div class="value-title">От 590 ₽ один раз</div>
         <div class="value-sub">Без подписки. Бот ваш навсегда</div>
       </div>
     </div>
@@ -1387,55 +1439,59 @@ footer {
 <section class="section" id="price">
 
   <div class="section-label reveal">Цена</div>
-  <h2 class="section-h2 reveal reveal-d1" style="margin-bottom: 64px;">Что входит в гайд</h2>
+  <h2 class="section-h2 reveal reveal-d1" style="margin-bottom: 64px;">Выбери тариф</h2>
 
-  <div class="price-wrap">
+  <div class="price-tiers">
 
-    <!-- Состав -->
-    <div class="price-includes reveal">
-      <div class="includes-item">
-        <div class="includes-marker">✓</div>
-        <div class="includes-text">Пошаговый маршрут: ChatGPT → ТЗ → Cursor → OpenRouter → рабочий бот</div>
+    <!-- Тариф 1: Старт -->
+    <div class="tier-card reveal">
+      <div class="tier-badge">Старт</div>
+      <div class="tier-name">Один бот - сам</div>
+      <div class="tier-price">590 ₽</div>
+      <div class="tier-list">
+        <div class="tier-list-item"><span class="mark">✓</span> Гайд «Маршрут первого бота» - полный маршрут на 2 дня</div>
+        <div class="tier-list-item"><span class="mark">✓</span> Готовые промпты: генератор ТЗ + промпт-архитектор</div>
       </div>
-      <div class="includes-item">
-        <div class="includes-marker">✓</div>
-        <div class="includes-text">Шаблоны промптов для ТЗ под разные бизнес-процессы</div>
-      </div>
-      <div class="includes-item">
-        <div class="includes-marker">✓</div>
-        <div class="includes-text">Инструкции по OCR: выбор модели, настройка, подключение через OpenRouter</div>
-      </div>
-      <div class="includes-item">
-        <div class="includes-marker">✓</div>
-        <div class="includes-text">Раздел по дебагу: конкретные шаги когда что-то идёт не так</div>
-      </div>
-      <div class="includes-item">
-        <div class="includes-marker">✓</div>
-        <div class="includes-text">Примеры команд для Cursor под типовые задачи</div>
-      </div>
+      <a class="tier-cta" href="https://yookassa.ru/my/i/akfh3tA074dq/l" target="_blank" rel="noopener">Взять «Старт» - 590 ₽</a>
     </div>
 
-    <!-- Панель цены -->
-    <div class="price-panel reveal reveal-d1">
-      <div class="price-label">Цена</div>
-      <div class="price-value">1 590 ₽</div>
-      <div class="price-once">Один раз. Без подписки. Бот ваш навсегда.</div>
-
-      <!-- CTA 2/3 -->
-      <!-- TODO: заменить на ссылку ЮKassa -->
-      <a class="cta-btn cta-glow" href="#pay">Получить гайд - 1 590 ₽</a>
-
-      <div class="price-payment">Оплата: <span>через ЮKassa - карта, СБП</span></div>
-
-      <div class="guarantee-box">
-        <div class="guarantee-title">Гарантия · 7 дней</div>
-        <div class="guarantee-text">
-          7 дней: если откроешь гайд и не сделаешь ни одного шага - верну деньги.
-          Это не гарантия результата: результат зависит от того, дойдёшь ли до конца.
-        </div>
+    <!-- Тариф 2: Сборка (якорный) -->
+    <div class="tier-card tier-featured reveal reveal-d1">
+      <div class="tier-badge">⭐ Сборка - выбор большинства</div>
+      <div class="tier-name">Бот + защита от ошибок</div>
+      <div class="tier-price">1 590 ₽</div>
+      <div class="tier-list">
+        <div class="tier-list-item"><span class="mark">✓</span> Всё из тарифа «Старт»</div>
+        <div class="tier-list-item"><span class="mark">✓</span> Раздел «Подбор модели под задачу» (кейс OCR)</div>
+        <div class="tier-list-item"><span class="mark">✓</span> Шаблон выбора первого процесса + чек-лист старта</div>
+        <div class="tier-list-item"><span class="mark">✓</span> Блок 152-ФЗ: как не нарушить закон с данными клиентов</div>
+        <div class="tier-list-item"><span class="mark">✓</span> Инструкция по шагу подтверждения перед записью в БД</div>
+        <div class="tier-list-item"><span class="mark">✓</span> Доступ в чат первого потока (автор + равные)</div>
       </div>
+      <a class="tier-cta" href="https://yookassa.ru/my/i/akfhu7nIAlQS/l" target="_blank" rel="noopener">Взять «Сборку» - 1 590 ₽</a>
     </div>
 
+    <!-- Тариф 3: Сборка + Разбор -->
+    <div class="tier-card reveal reveal-d2">
+      <div class="tier-badge">Сборка + Разбор</div>
+      <div class="tier-name">С личным разбором</div>
+      <div class="tier-price">9 900 ₽</div>
+      <div class="tier-list">
+        <div class="tier-list-item"><span class="mark">✓</span> Всё из тарифа «Сборка»</div>
+        <div class="tier-list-item"><span class="mark">✓</span> Модуль «второй кейс»: уведомления клиентам об оплатах</div>
+        <div class="tier-list-item"><span class="mark">✓</span> Личный разбор твоего процесса на созвоне с автором</div>
+      </div>
+      <a class="tier-cta" href="https://yookassa.ru/my/i/akfhiLcNqtBq/l" target="_blank" rel="noopener">Взять «Разбор» - 9 900 ₽</a>
+    </div>
+
+  </div>
+
+  <div class="guarantee-box reveal reveal-d3" style="max-width: 760px; margin: 32px auto 0;">
+    <div class="guarantee-title">Гарантия · 7 дней</div>
+    <div class="guarantee-text">
+      7 дней: если откроешь гайд и не сделаешь ни одного шага - верну деньги.
+      Это не гарантия результата: результат зависит от того, дойдёшь ли до конца.
+    </div>
   </div>
 
 </section>
@@ -1513,8 +1569,7 @@ footer {
   </p>
 
   <!-- CTA 3/3 -->
-  <!-- TODO: заменить на ссылку ЮKassa -->
-  <a class="cta-btn cta-glow reveal reveal-d2" href="#pay">Получить гайд - 1 590 ₽</a>
+  <a class="cta-btn cta-glow reveal reveal-d2" href="#price">Выбрать тариф - от 590 ₽</a>
   <p class="final-trust reveal reveal-d2">Оплата через ЮKassa · <span>7 дней</span> - верну если не подойдёт</p>
 
   <!-- Secondary -->
@@ -1527,14 +1582,11 @@ footer {
 
 <!-- ═══════════ ПОДВАЛ ═══════════ -->
 <footer>
-  <!-- TODO: ФИО и ИНН заполнить через скилл yurist перед деплоем -->
-  <div class="footer-line">ИП [ФИО] | ИНН: [заполнить перед деплоем]</div>
-  <!-- TODO: живые ссылки на публичную оферту и политику конфиденциальности (скилл yurist) -->
+  <div class="footer-line">ИП Рамазанов Нариман Джафарович | ИНН 151000641307 | ОГРНИП 316774600494322</div>
   <div class="footer-line">
-    <a href="#">Публичная оферта</a> | <a href="#">Политика конфиденциальности</a>
+    <a href="oferta.html">Публичная оферта</a> | <a href="privacy.html">Политика конфиденциальности</a>
   </div>
-  <!-- TODO: контакты для вопросов (ник Telegram + email) -->
-  <div class="footer-line">Вопросы: @[ник] или email [заполнить]</div>
+  <div class="footer-line">Вопросы: <a href="https://t.me/RostCifruBot">@RostCifruBot</a> или Instagram <a href="https://instagram.com/narimramaz">@narimramaz</a></div>
 </footer>
 
 <script>
